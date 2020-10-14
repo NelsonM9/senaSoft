@@ -98,7 +98,7 @@ class CloudantManager():
             for doc in docs:
                 if doc['doc'].get(key_i) == value_i:
                     list_docs.append(doc)
-            return "ok"
+            return list_docs
         except:
             return "error"
 

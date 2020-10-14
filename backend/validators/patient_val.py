@@ -5,7 +5,7 @@ class PatientSignin(Schema):
     name_p = fields.String(
         required=True, validate=validate.Length(min=3, max=20))
     mail_p = fields.String(
-        required=True, validate=validate.Length(min=13, max=130))
+        required=True, validate=validate.Length(min=10, max=45))
     phone = fields.String(
         required=True, validate=validate.Length(min=7, max=10))
     age = fields.Integer(required=True)

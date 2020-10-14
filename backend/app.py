@@ -1,6 +1,7 @@
 from flask import  Flask
 from flask_cors import CORS
-from routes import *
+from routes import users, appointment, document
+from db.postgresql.model import db
 
 app = Flask(__name__)
 

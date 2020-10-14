@@ -2,11 +2,11 @@ from controllers.signin import Signin
 from controllers.login import Login
 from controllers.appointment import Appointment
 from controllers.order import  Order
-from controllers.auth import Authorization
+from controllers.authorization import Authorization
 
 users = {
     "signin": "/signin", "view_func_signin": Signin.as_view("api_signin"),
-    "login": "/login", "view_func_login": Login.as_view("api_login")
+    "login": "/loginUser", "view_func_login": Login.as_view("api_login")
 }
 
 appointment = {
