@@ -9,6 +9,7 @@ class Doctor(db.Model):
     id_d = db.Column(db.String(20), primary_key=True, nullable=False)
     name_d = db.Column(db.String(40), nullable=False)
     mail_d = db.Column(db.String(50), nullable=False)
+    password_d = db.Column(db.String(128), nullable=False)
     specialty = db.Column(db.String(30), nullable=False)
     phone = db.Column(db.String(12), nullable=False)
     role_d = db.Column(db.String(2), nullable=False)
@@ -17,10 +18,11 @@ class Doctor(db.Model):
     appointment_assigned_doctor = db.relationship(
         'Appointment', backref='app_assi_doc', lazy='dynamic', foreign_keys='Family.id_d')
 
-    def __init__(self, id_d, name_d, mail_d, specialty, phone, role_d):
+    def __init__(self, id_d, name_d, mail_d, password_d, specialty, phone, role_d):
         self.id_d = id_d
         self.name_d = name_d
         self.mail_d = mail_d
+        self.password_d = password_d
         self.specialty = specialty
         self.phone = phone
         self.role_d = role_d
@@ -32,6 +34,7 @@ class Patient(db.Model):
     id_p = db.Column(db.String(20), primary_key=True, nullable=False)
     name_p = db.Column(db.String(40), nullable=False)
     mail_p = db.Column(db.String(50), nullable=False)
+    password_p = db.Column(db.String(128), nullable=False)
     phone = db.Column(db.String(12))
     age = db.Column(db.Integer, nullable=False)
     id_family = db.Column(db.String(10), db.ForeignKey('Family.id_f'))
@@ -40,10 +43,11 @@ class Patient(db.Model):
     appointment_assigned_patient = db.relationship(
         'Appointment', backref='app_assi_pat', lazy='dynamic', foreign_keys='Appointment.id_a')
 
-    def __init__(self, id_p, name_p, mail_p, phone, age, role_p, id_m):
+    def __init__(self, id_p, name_p, mail_p, password_p, phone, age, role_p, id_m):
         self.id_p = id_p
         self.name_p = name_p
         self.mail_p = mail_p
+        self.password_p = password_p
         self.phone = phone
         self.age = age
         self.role_p = role_p
