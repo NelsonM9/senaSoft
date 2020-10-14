@@ -1,7 +1,8 @@
 from controllers.signin import Signin
 from controllers.login import Login
 from controllers.appointment import Appointment
-from controllers.orderauth import  OrderAuth
+from controllers.order import  Order
+from controllers.auth import Authorization
 
 users = {
     "signin": "/signin", "view_func_signin": Signin.as_view("api_signin"),
@@ -12,6 +13,7 @@ appointment = {
     "appointment": "/appointment", "view_func_appointment": Appointment.as_view("api_appointment")
 }
 
-orderauth = {
-    "orderauth": "/orderauth", "view_func_orderauth": OrderAuth.as_view("api_orderauth")
+document = {
+    "order": "/order", "view_func_order": Order.as_view("api_order"),
+    "authorization": "/authorization", "view_func_authorization": Authorization.as_view("api_authorization")
 }
