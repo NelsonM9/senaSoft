@@ -3,7 +3,7 @@ from cloudant.error import CloudantException
 from cloudant.result import Result
 
 
-class CloudantManager:
+class CloudantManager():
     # Autenticacion
     client = Cloudant.iam("d6179485-8359-47c6-9067-337120997531-bluemix",
                           "2_9ItqbvPPIMPM7meDDr4nbB1ND-vvZ4dXMT8z8oGH1_")
@@ -59,9 +59,9 @@ class CloudantManager:
             return "error"
 
     # Actualizar documentos
-    def update_doc(self, db, key_i, value, data):
+    def update_doc(self, db, key_i, value_i, data):
         try:
-            docs = CloudantManager.get_all_doc(db)
+            docs = CloudantManager.get_all_docs(db)
             for doc in docs:
                 if doc['doc'].get(key_i) == value_i:
                     document = db[doc['id']]
