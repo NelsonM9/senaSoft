@@ -6,14 +6,5 @@ from controllers.authorization import Authorization
 
 users = {
     "signin": "/signin", "view_func_signin": Signin.as_view("api_signin"),
-    "login": "/loginUser", "view_func_login": Login.as_view("api_login")
-}
-
-appointment = {
-    "appointment": "/appointment", "view_func_appointment": Appointment.as_view("api_appointment")
-}
-
-document = {
-    "order": "/order", "view_func_order": Order.as_view("api_order"),
-    "authorization": "/authorization", "view_func_authorization": Authorization.as_view("api_authorization")
+    "login": "/login", "view_func_login": Login.as_view("api_login")
 }
