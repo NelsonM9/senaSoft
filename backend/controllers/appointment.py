@@ -1,10 +1,11 @@
 from flask.views import MethodView
 from flask import request, jsonify
-from db.cloudant.cloudant_manager import CloudantManager 
+from db.cloudant.cloudant_manager import CloudantManager
 from validators.appointment_val import AppointmentVal
 
 cm = CloudantManager()
 appointment_schema = AppointmentVal()
+
 
 class Appointment(MethodView):
     def post(self):
@@ -12,7 +13,7 @@ class Appointment(MethodView):
             appointment = request.get_json()
             errors = appointment_schema.validate(appointment)
             if errors:
-                return jsonify({'st':errors})
+                return jsonify({'st': errors})
             conn = cm.connect_service()
             my_db = cm.connect_db('health-db')
             print("aaa")
@@ -25,5 +26,4 @@ class Appointment(MethodView):
                 return jsonify({'st': 'error'})
 
         except:
-            return jsonify({'st':"error en todo"}), 403
-            
+            return jsonify({'st': "error en todo"}), 403
