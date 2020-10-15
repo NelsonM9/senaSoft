@@ -26,7 +26,6 @@ class Login(MethodView):
             cloud_manager.connect_service()
             # Conexion y validacion a la db
             my_db = cloud_manager.connect_db('health-db')
-            print(my_db)
             if my_db == 'error':
                 raise Exception
             # Se realiza la autenticacion de credenciales

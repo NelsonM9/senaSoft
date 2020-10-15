@@ -16,7 +16,6 @@ class Appointment(MethodView):
                 return jsonify({'st': errors})
             conn = cm.connect_service()
             my_db = cm.connect_db('health-db')
-            print("aaa")
             if my_db == 'error':
                 raise Exception
             doc_msg = cm.add_doc(my_db, appointment)

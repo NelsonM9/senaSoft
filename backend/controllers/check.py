@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from flask.views import MethodView
-from config import KEY_TOKEN_AUTH
+from config.config import KEY_TOKEN_AUTH
 import jwt
 
 class Check(MethodView):

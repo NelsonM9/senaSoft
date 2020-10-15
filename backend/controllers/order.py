@@ -3,10 +3,6 @@ from flask.views import MethodView
 from db.cloudant.cloudant_manager import CloudantManager
 
 cloud_manager = CloudantManager()
-<<<<<<< HEAD
-=======
-
->>>>>>> b9c97c87902ee5c262e1c7c8c2bb4b34719c04be
 
 class Order(MethodView):
     def get(self, id_p):
