@@ -1,11 +1,8 @@
 from flask import request, jsonify
 from flask.views import MethodView
 from db.cloudant.cloudant_manager import CloudantManager
-from validators.authorization_val import AuthValidator
 
 cloud_manager = CloudantManager()
-auth_schema = AuthValidator()
-
 
 class Order(MethodView):
     def get(self, id_p):
