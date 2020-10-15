@@ -73,7 +73,7 @@ class CloudantManager():
             return "error"
 
     # Eliminar documentos
-    def delete_doc(self, db, id_doc):
+    def delete_doc(self, db, id_doc, key_i):
         try:
             doc_temp = db[id_doc]
             doc_temp.delete()
