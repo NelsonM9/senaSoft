@@ -5,11 +5,9 @@ from validators.patient_val import PatientSignin
 from validators.doctor_val import DoctorSignin
 from db.cloudant.cloudant_manager import CloudantManager
 
-
 patient_schema = PatientSignin()
 doctor_schema = DoctorSignin()
 cm = CloudantManager()
-
 crypt = Crypt()
 
 
