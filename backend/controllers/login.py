@@ -4,7 +4,7 @@ from helpers.crypt import Crypt
 from validators.login_val import LoginValidator
 from db.cloudant.cloudant_manager import CloudantManager
 from db.postgresql.postgresql_manager import PostgresqlManager
-from config import KEY_TOKEN_AUTH
+from config.config import KEY_TOKEN_AUTH
 import jwt
 import datetime
 
@@ -40,8 +40,8 @@ class Login(MethodView):
                     # Construccion y envio del token
                     exp = datetime.datetime.utcnow() + datetime.timedelta(seconds=600)
                     name = user['doc']['name_p']
-                    encoded_token = jwt.encode(
-                        {'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256')
+                    encoded_token = str(jwt.encode(
+                        {'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256'))
                     return jsonify({'st': 'ok', 'token': encoded_token}), 200
                 else:
                     return jsonify({'st': 'pass'}), 403
@@ -56,8 +56,8 @@ class Login(MethodView):
                     # Construccion y envio del token
                     exp = datetime.datetime.utcnow() + datetime.timedelta(seconds=600)
                     name = user['doc']['name_d']
-                    encoded_token = jwt.encode(
-                        {'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256')
+                    encoded_token = str(jwt.encode(
+                        {'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256'))
                     return jsonify({'st': 'ok', 'token': encoded_token}), 200
                 else:
                     return jsonify({'st': 'pass'}), 403
