@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 from db.postgresql.model import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -43,4 +42,3 @@ class PostgresqlManager:
             return e
         except:
             return 'error'
->>>>>>> bc0bcd077e1747d97842d39fec183b1aa2ac7a42
