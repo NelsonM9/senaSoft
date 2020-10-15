@@ -1,4 +1,3 @@
-
 from db.postgresql.model import db
 from sqlalchemy.exc import SQLAlchemyError
 
