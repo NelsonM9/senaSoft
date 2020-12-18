@@ -16,14 +16,15 @@ class DBP:
             if patient_temp != []:
                 for patient in patient_temp:
                     patient_nosql = {
-                        'id_p': patient.id_p,
-                        'name_p': patient.name_p,
-                        'mail_p': patient.mail_p,
-                        'password_p': patient.password_p,
+                        'id_u': patient.id_p,
+                        'name': patient.name_p,
+                        'last': patient.last_p, 
+                        'mail': patient.mail_p,
+                        'password': patient.password_p,
                         'phone': patient.phone,
                         'age': patient.age,
                         'id_family': patient.id_family,
-                        'role_p': '2'
+                        'role': '2'
                     }
                     msg = cloud_manager.add_doc(my_db, patient_nosql)
                     patient_del = postgres_manager.delete(patient)
@@ -33,13 +34,14 @@ class DBP:
             if doctor_temp != []:
                 for doctor in doctor_temp:
                     doctor_nosql = {
-                        'id_d': doctor.id_d,
-                        'name_d': doctor.name_d,
-                        'mail_d': doctor.mail_d,
-                        'password_d': doctor.password_d,
+                        'id_u': doctor.id_d,
+                        'name': doctor.name_d,
+                        'last': doctor.last_d,
+                        'mail': doctor.mail_d,
+                        'password': doctor.password_d,
                         'specialty': doctor.specialty,
                         'phone': doctor.phone,
-                        'role_d': '1'
+                        'role': '1'
                     }
                     msg = cloud_manager.add_doc(my_db, doctor_nosql)
                     doctor_del = postgres_manager.delete(doctor)

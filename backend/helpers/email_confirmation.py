@@ -1,28 +1,38 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from helpers.prvdrs import Prvdrs
 
-# Falta implementar en el proyecto
+prv = Prvdrs()
+
 class EmailConfirmation():
     # Credentials
-    provider = 'smtp-mail.outlook.com'
-    sender = 'drhealth.jnn@hotmail.com'
-    password = 'password1'
-    server = smtplib.SMTP(provider, 587)
+    provider = prv.opt('outlook')
+    sender = 'dr.health.quindio@outlook.com'
+    password = 'naturalezasalvaje'
+    port = 587
+
+    def credentials(self, provider, sender, password, port):
+        self.provider = prv.opt(provider)
+        self.sender = sender
+        self.password = password
+        self.port = port
 
     def send_msg(self, user_mail):
+        print(9)
         # Server connection
-        EmailConfirmation.server.starttls()
-        EmailConfirmation.server.ehlo()
+        server = smtplib.SMTP(self.provider, self.port)
+        server.starttls()
+        server.ehlo()
         # Authentication
-        EmailConfirmation.server.login(
-            EmailConfirmation.sender, EmailConfirmation.password)
+        server.login(self.sender, self.password)
         # message
-        message = 'Gracias por elegirnos, su registro ha sido exitoso'
+        message = '<b>Gracias por elegirnos</b>, los servicios de <b>Dr. Health</b> estan disponibles para ti.<br>'
         msg = MIMEMultipart()
         msg.attach(MIMEText(message, 'html'))
-        msg['From'] = EmailConfirmation.sender
+        msg['From'] = self.sender
         msg['To'] = user_mail
-        msg['Subject'] = 'Prueba'
-        EmailConfirmation.server.sendmail(
-            msg['From'], msg['To'], msg.as_string())
+        msg['Subject'] = 'Registro Exitoso'
+        server.sendmail(msg['From'], msg['To'], msg.as_string())
+        server.quit()
+        return 'complete'

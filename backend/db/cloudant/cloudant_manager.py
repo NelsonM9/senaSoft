@@ -33,7 +33,7 @@ class CloudantManager():
         except:
             return "error"
 
-    # Crear la conexion con el servicio
+    # desconectar servicio
     def disconnect(self, db_name):
         try:
             CloudantManager.client.disconnect()
@@ -90,7 +90,7 @@ class CloudantManager():
         except:
             return "error"
 
-    # Consulta individual por llave y valor del documento
+    # Consulta individual
     def get_query_by(self, db, value_i, key_i):
         try:
             list_docs = []

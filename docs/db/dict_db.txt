@@ -1,6 +1,7 @@
 __tablename__ = "doctor"
 id_d = documento de identidad (String)
 name_d = nombre (String)
+last_d = apellid (String)
 mail_d = correo electronico (String)
 password_d = contrasena (String)
 specialty = especialidad (String)
@@ -10,6 +11,7 @@ role_d = rol (String)
 __tablename__ = "patient"
 id_p = documento de identidad (String)
 name_p = nombre (String)
+last_p = apellido (String)
 mail_p = correo (String)
 password_p = contrasena (String)
 phone = telefono (String)
@@ -41,10 +43,10 @@ diagnosis = diagnostico (String)
 __tablename__ = "authorization"
 id_auth = id de la autorizacion (String)
 id_o = id de la orden (String)
-file_auth = archivo pdf de la autorizacion (local o blob)
+file_a = archivo pdf de la autorizacion (bytea)
 
 __tablename__ = "result"
 id_r = id del resultado de la orden (String)
 id_o = id de la orden (String)
-file_r = archivo pdf con el resultado (local o blob)
+file_r = archivo pdf con el resultado (bytea)
 

@@ -13,5 +13,5 @@ class Check(MethodView):
                 token_auth = jwt.decode(token[1], KEY_TOKEN_AUTH, algorithms=['HS256'])
                 return jsonify({'state':'welcome'}), 200
             except:
-                return jsonify({'state':'token'})
-        return jsonify({'state':'complete'})
+                return jsonify({'state':'token'}), 403
+        return jsonify({'state':'not found'}), 404
