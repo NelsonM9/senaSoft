@@ -19,7 +19,6 @@ class EmailConfirmation():
         self.port = port
 
     def send_msg(self, user_mail):
-        print(9)
         # Server connection
         server = smtplib.SMTP(self.provider, self.port)
         server.starttls()

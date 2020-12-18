@@ -4,6 +4,7 @@ from helpers.crypt import Crypt
 from helpers.email_confirmation import EmailConfirmation
 from validators.patient_val import PatientSignin
 from validators.doctor_val import DoctorSignin
+from db.helpers.db_parser import DBP
 from db.cloudant.cloudant_manager import CloudantManager
 from db.postgresql.postgresql_manager import PostgresqlManager
 from db.postgresql.model import Doctor, Patient, Family, Medicalrecord
@@ -12,6 +13,7 @@ patient_schema = PatientSignin()
 doctor_schema = DoctorSignin()
 cm = CloudantManager()
 pm = PostgresqlManager()
+dbp = DBP()
 crypt = Crypt()
 mail_tool = EmailConfirmation()
 
@@ -23,6 +25,7 @@ class Signin(MethodView):
             my_db = cm.connect_db('health-db')
             if my_db == "error":
                 raise Exception
+            local_sync = dbp.sync(my_db)
             try:
                 if user_signin['role'] == '1':
                     errors = doctor_schema.validate(user_signin)
