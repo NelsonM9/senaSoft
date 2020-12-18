@@ -33,11 +33,7 @@ class CloudantManager():
         except:
             return "error"
 
-<<<<<<< HEAD
-    # Crear la conexion con el servicio
-=======
     # desconectar servicio
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
     def disconnect(self, db_name):
         try:
             CloudantManager.client.disconnect()
@@ -77,11 +73,7 @@ class CloudantManager():
             return "error"
 
     # Eliminar documentos
-<<<<<<< HEAD
-    def delete_doc(self, db, id_doc):
-=======
     def delete_doc(self, db, id_doc, key_i):
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         try:
             doc_temp = db[id_doc]
             doc_temp.delete()
@@ -98,11 +90,7 @@ class CloudantManager():
         except:
             return "error"
 
-<<<<<<< HEAD
-    # Consulta individual por llave y valor del documento
-=======
     # Consulta individual
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
     def get_query_by(self, db, value_i, key_i):
         try:
             list_docs = []

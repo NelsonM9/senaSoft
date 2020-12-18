@@ -1,72 +1,16 @@
 from flask.views import MethodView
 from flask import request, jsonify
 from helpers.crypt import Crypt
-<<<<<<< HEAD
-from validators.patient_val import PatientSignin
-from validators.doctor_val import DoctorSignin
-from db.cloudant.cloudant_manager import CloudantManager
-
-=======
 from helpers.email_confirmation import EmailConfirmation
 from validators.patient_val import PatientSignin
 from validators.doctor_val import DoctorSignin
 from db.cloudant.cloudant_manager import CloudantManager
 from db.postgresql.postgresql_manager import PostgresqlManager
 from db.postgresql.model import Doctor, Patient, Family, Medicalrecord
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
 
 patient_schema = PatientSignin()
 doctor_schema = DoctorSignin()
 cm = CloudantManager()
-<<<<<<< HEAD
-
-crypt = Crypt()
-
-
-class Signin(MethodView):
-    def post(self):
-
-        try:
-            user_signin = request.get_json()
-            if user_signin['role_d'] == "1":
-                conn = cm.connect_service()
-                my_db = cm.connect_db('health-db')
-                if my_db == "error":
-                    raise Exception
-                docs = cm.get_query_by(my_db, user_signin['mail_d'], 'mail_d')
-                if docs != []:
-                    doc = docs[0]
-                    return jsonify({'st': doc['doc']['mail_d']}), 403
-                user_signin['password_d'] = crypt.hash_string(user_signin['password_d'])
-                doc_msg = cm.add_doc(my_db, user_signin)
-
-                if doc_msg == "ok":
-                    return jsonify({'st': 'ok'}), 200
-                elif doc_msg == "error":
-                    return jsonify({'st': 'error'}), 403
-            
-            if user_signin['role_p'] == "2":
-
-                conn = cm.connect_service()
-                my_db = cm.connect_db('health-db')
-                if my_db == "error":
-                    raise Exception
-                docs = cm.get_query_by(my_db, user_signin['mail_p'], 'mail_p')
-                if docs != []:
-                    doc = docs[0]
-                    return jsonify({'st': doc['doc']['mail_p']}), 403
-
-                user_signin['password_p'] = crypt.hash_string(user_signin['password_p'])
-                doc_msg = cm.add_doc(my_db, user_signin)
-                if doc_msg == "ok":
-                    return jsonify({'st': 'ok'}), 200
-                elif doc_msg == "error":
-                    return jsonify({'st': 'error'}), 403
-            
-        except:
-            return jsonify({"st": "error en registro"}), 403
-
-=======
 pm = PostgresqlManager()
 crypt = Crypt()
 mail_tool = EmailConfirmation()
@@ -178,4 +122,3 @@ class Signin(MethodView):
                         return jsonify({'st', 'Incorrect local data'}), 403
                 except:
                     return jsonify('st', 'Other exception'), 403
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c

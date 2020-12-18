@@ -1,18 +1,11 @@
 from flask.views import MethodView
 from flask import request, jsonify
-<<<<<<< HEAD
-from db.cloudant.cloudant_manager import CloudantManager 
-=======
 from db.cloudant.cloudant_manager import CloudantManager
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
 from validators.appointment_val import AppointmentVal
 
 cm = CloudantManager()
 appointment_schema = AppointmentVal()
 
-<<<<<<< HEAD
-class Appointment(MethodView):
-=======
 
 class Appointment(MethodView):
     def get(self):
@@ -47,35 +40,18 @@ class Appointment(MethodView):
         except:
             return jsonify({'st': "error"}), 403
 
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
     def post(self):
         try:
             appointment = request.get_json()
             errors = appointment_schema.validate(appointment)
             if errors:
-<<<<<<< HEAD
-                return jsonify({'st':errors})
-            conn = cm.connect_service()
-            my_db = cm.connect_db('health-db')
-            print("aaa")
-=======
                 return jsonify({'st': errors}), 403
             conn = cm.connect_service()
             my_db = cm.connect_db('health-db')
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
             if my_db == 'error':
                 raise Exception
             doc_msg = cm.add_doc(my_db, appointment)
             if doc_msg == "ok":
-<<<<<<< HEAD
-                return jsonify({'st': 'ok'})
-            elif doc_msg == "error":
-                return jsonify({'st': 'error'})
-
-        except:
-            return jsonify({'st':"error en todo"}), 403
-            
-=======
                 return jsonify({'st': 'ok'}), 200
             elif doc_msg == "error":
                 return jsonify({'st': 'error'}), 403
@@ -83,4 +59,3 @@ class Appointment(MethodView):
                 return jsonify({'st': 'nothing'}), 403 
         except:
             return jsonify({'st': "bad"}), 403
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c

@@ -8,10 +8,7 @@ class Doctor(db.Model):
 
     id_d = db.Column(db.String(20), primary_key=True, nullable=False)
     name_d = db.Column(db.String(40), nullable=False)
-<<<<<<< HEAD
-=======
     last_d = db.Column(db.String(40), nullable=False)
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
     mail_d = db.Column(db.String(50), nullable=False)
     password_d = db.Column(db.String(128), nullable=False)
     specialty = db.Column(db.String(30), nullable=False)
@@ -20,20 +17,12 @@ class Doctor(db.Model):
     family_group = db.relationship(
         'Family', backref='group', lazy='dynamic', foreign_keys='Family.id_d')
     appointment_assigned_doctor = db.relationship(
-<<<<<<< HEAD
-        'Appointment', backref='app_assi_doc', lazy='dynamic', foreign_keys='Family.id_d')
-
-    def __init__(self, id_d, name_d, mail_d, password_d, specialty, phone, role_d):
-        self.id_d = id_d
-        self.name_d = name_d
-=======
         'Appointment', backref='app_assi_doc', lazy='dynamic', foreign_keys='Appointment.id_d')
 
     def __init__(self, id_d, name_d, last_d, mail_d, password_d, specialty, phone, role_d):
         self.id_d = id_d
         self.name_d = name_d
         self.last_d = last_d
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         self.mail_d = mail_d
         self.password_d = password_d
         self.specialty = specialty
@@ -55,15 +44,9 @@ class Patient(db.Model):
     role_p = db.Column(db.String(2), nullable=False)
     id_m = db.Column(db.String(10), db.ForeignKey('Medicalrecord.id_m'))
     appointment_assigned_patient = db.relationship(
-<<<<<<< HEAD
-        'Appointment', backref='app_assi_pat', lazy='dynamic', foreign_keys='Appointment.id_a')
-
-    def __init__(self, id_p, name_p, last_p, mail_p, password_p, phone, age, role_p, id_m):
-=======
         'Appointment', backref='app_assi_pat', lazy='dynamic', foreign_keys='Appointment.id_p')
 
     def __init__(self, id_p, name_p, last_p, mail_p, password_p, phone, age, id_family, role_p, id_m):
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         self.id_p = id_p
         self.name_p = name_p
         self.last_p = last_p
@@ -71,10 +54,7 @@ class Patient(db.Model):
         self.password_p = password_p
         self.phone = phone
         self.age = age
-<<<<<<< HEAD
-=======
         self.id_family = id_family
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         self.role_p = role_p
         self.id_m = id_m
 
@@ -83,21 +63,11 @@ class Family(db.Model):
     __tablename__ = "Family"
 
     id_f = db.Column(db.String(10), primary_key=True, nullable=False)
-<<<<<<< HEAD
-    id_d = db.Column(db.String(20), db.ForeignKey('Doctor.id_d'))
-    patient_member = db.relationship(
-        'Patient', backref='member', lazy='dynamic', foreign_keys='Patient.id_p')
-
-    def __init__(self, id_f, id_p, id_d):
-        self.id_f = id_f
-        self.id_p = id_p
-=======
     id_d = db.Column(db.String(20), db.ForeignKey('Doctor.id_d'), nullable=True)
     patient_member = db.relationship('Patient', backref='member', lazy='dynamic', foreign_keys='Patient.id_family')
 
     def __init__(self, id_f, id_d):
         self.id_f = id_f
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         self.id_d = id_d
 
 
@@ -106,12 +76,7 @@ class Medicalrecord(db.Model):
 
     id_m = db.Column(db.String(10), primary_key=True, nullable=False)
     pathologies = db.Column(db.String(250))
-<<<<<<< HEAD
-    patient_record = db.relationship(
-        'Patient', backref='member', lazy='dynamic', foreign_keys='Patient.id_p')
-=======
     patient_record = db.relationship('Patient', backref='owner_record', lazy='dynamic', foreign_keys='Patient.id_m')
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
 
     def __init__(self, id_m, pathologies):
         self.id_m = id_m
@@ -129,13 +94,8 @@ class Appointment(db.Model):
     order_a = db.relationship(
         'Order', backref='app_order', lazy='dynamic', foreign_keys='Order.id_a')
 
-<<<<<<< HEAD
-    def __init__(self, id_f, id_p, id_d, date_a, reason):
-        self.id_f = id_f
-=======
     def __init__(self, id_a, id_p, id_d, date_a, reason):
         self.id_a = id_a
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
         self.id_p = id_p
         self.id_d = id_d
         self.date_a = date_a
@@ -149,15 +109,9 @@ class Order(db.Model):
     id_a = db.Column(db.String(10), db.ForeignKey('Appointment.id_a'))
     diagnosis = db.Column(db.String(250), nullable=False)
     auth = db.relationship(
-<<<<<<< HEAD
-        'Authorization', backref='auth_order', lazy='dynamic', foreign_keys='Authorization.id_auth')
-    result = db.relationship(
-        'Result', backref='result_order', lazy='dynamic', foreign_keys='Result.id_r')
-=======
         'Authorization', backref='auth_order', lazy='dynamic', foreign_keys='Authorization.id_o')
     result = db.relationship(
         'Result', backref='result_order', lazy='dynamic', foreign_keys='Result.id_o')
->>>>>>> 5b422e83c3aeb044af7121b13f9985c242a61d5c
 
     def __init__(self, id_o, id_a, diagnosis):
         self.id_o = id_o
