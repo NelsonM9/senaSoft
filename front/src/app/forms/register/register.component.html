@@ -1,50 +1,47 @@
-<form [formGroup]="form" class="form-style" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-
-
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="col s12">
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix blue-sac">assignment</i>
+            <input type="text" class="validate" formControlName="id_p" required>
+            <label for="icon_prefix">documento</label>
+        </div>
     </div>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-
-    <h1>Registro</h1>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label class="text-bold">Documento</mat-label>
-            <input formControlName="id_p" matInput placeholder="1094970...">
-        </mat-form-field>
-
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" class="validate" formControlName="name_p" required>
+            <label for="icon_prefix">Nombre</label>
+        </div>
     </div>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label>Nombre</mat-label>
-            <input matInput placeholder="pepe" formControlName="name_p">
-        </mat-form-field>
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">phone</i>
+            <input type="text" class="validate" formControlName="phone" required>
+            <label for="icon_prefix">Telefono</label>
+        </div>
     </div>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label>Telefono</mat-label>
-            <input matInput placeholder="321-778-1443" formControlName="phone">
-        </mat-form-field>
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">vpn_key</i>
+            <input matInput [type]="hide ? 'password' : 'text'" class="validate" formControlName="password" required>
+            <label>Password</label>
+            <button btn waves-effect (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"><mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+        </div>
     </div>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label>password</mat-label>
-            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-        </mat-form-field>
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix"></i>
+            <input type="text" class="validate" formControlName="age" required>
+            <label for="icon_prefix">edad</label>
+        </div>
     </div>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label>Edad</mat-label>
-            <input matInput placeholder="edad" formControlName="age">
-        </mat-form-field>
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">email</i>
+            <input type="email" class="validate" formControlName="email_p" required>
+            <label for="email">Email</label>
+            <span class="helper-text" data-error="wrong" data-success="right">Ingrese su email</span>
+        </div>
     </div>
-    <div class="form-group">
-        <mat-form-field class="example-full-width">
-            <mat-label>correo</mat-label>
-            <input matInput placeholder="PEPE@gmail.com" formControlName="mail_p">
-        </mat-form-field>
-    </div>
-
-    <button mat-raised-button color="primary" (click)="register()">Primary</button>
+    <button class="btn waves-effect teal lighten-2" type="submit" name="action" [disabled]="form.invalid" (click)="register()">Registrar<i class="material-icons right">send</i></button>
 </form>
