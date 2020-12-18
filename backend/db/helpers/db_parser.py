@@ -9,7 +9,7 @@ cloud_manager = CloudantManager()
 
 
 class DBP:
-    def sync(self, my_db, cm):
+    def sync(self, my_db):
         try:
             # Sincronizacion de la tabla patient
             patient_temp = postgres_manager.get_all(Patient)
@@ -24,7 +24,8 @@ class DBP:
                         'phone': patient.phone,
                         'age': patient.age,
                         'id_family': patient.id_family,
-                        'role': '2'
+                        'role': patient.role_p,
+                        'id_m': patient.id_m
                     }
                     msg = cloud_manager.add_doc(my_db, patient_nosql)
                     patient_del = postgres_manager.delete(patient)
@@ -41,7 +42,7 @@ class DBP:
                         'password': doctor.password_d,
                         'specialty': doctor.specialty,
                         'phone': doctor.phone,
-                        'role': '1'
+                        'role': doctor.role_d
                     }
                     msg = cloud_manager.add_doc(my_db, doctor_nosql)
                     doctor_del = postgres_manager.delete(doctor)
@@ -67,56 +68,6 @@ class DBP:
                     }
                     msg = cloud_manager.add_doc(my_db, record_nosql)
                     record_del = postgres_manager.delete(record)
-
-            # Sincronizacion de la tabla appointment
-            appointment_temp = postgres_manager.get_all(Appointment)
-            if appointment_temp != []:
-                for appointment in appointment_temp:
-                    appointment_nosql = {
-                        'id_a': appointment.id_a,
-                        'id_p': appointment.id_p,
-                        'id_d': appointment.id_d,
-                        'date_a': appointment.date_a,
-                        'reason': appointment.reason
-                    }
-                    msg = cloud_manager.add_doc(my_db, appointment_nosql)
-                    appointment_del = postgres_manager.delete(appointment)
-
-            # Sincronizacion de la tabla order
-            order_temp = postgres_manager.get_all(Order)
-            if order_temp != []:
-                for order in order_temp:
-                    order_nosql = {
-                        'id_o': order.id_o,
-                        'id_a': order.id_a,
-                        'diagnosis': order.diagnosis
-                    }
-                    msg = cloud_manager.add_doc(my_db, order_nosql)
-                    order_del = postgres_manager.delete(order)
-
-            # Sincronizacion de la tabla authorization
-            authorization_temp = postgres_manager.get_all(Authorization)
-            if authorization_temp != []:
-                for authorization in authorization_temp:
-                    authorization_nosql = {
-                        'id_auth': authorization.id_r,
-                        'id_o': authorization.id_o,
-                        'file_a': authorization.file_a
-                    }
-                    msg = cloud_manager.add_doc(my_db, authorization_nosql)
-                    authorization_del = postgres_manager.delete(authorization)
-
-            # Sincronizacion de la tabla result
-            result_temp = postgres_manager.get_all(Result)
-            if result_temp != []:
-                for result in result_temp:
-                    result_nosql = {
-                        'id_r': result.id_r,
-                        'id_o': result.id_o,
-                        'file_r': result.file_r
-                    }
-                    msg = cloud_manager.add_doc(my_db, result_nosql)
-                    result_del = postgres_manager.delete(result)
             return 'ok'
         except:
             return 'error'
