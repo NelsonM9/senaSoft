@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <mat-form-field class="example-full-width">
                         <mat-label>Email</mat-label>
-                        <input matInput placeholder="Pepe@gmail.com" formControlName="email">
+                        <input matInput placeholder="Pepe@gmail.com" formControlName="mail" required>
                     </mat-form-field>
                 </div>
 
@@ -23,7 +23,7 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
                     </mat-form-field>
                 </div>
-                <button mat-raised-button color="primary" (click)="prueba()">Primary</button>
+                <button class="btn waves-effect teal lighten-2" type="submit" name="action" [disabled]="form.invalid">Iniciar sesion<i class="material-icons right">send</i></button>
             </form>
         </div>
     </div>

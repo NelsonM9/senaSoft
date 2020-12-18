@@ -2,15 +2,22 @@
     <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix blue-sac">assignment</i>
-            <input type="text" class="validate" formControlName="id_p" required>
+            <input type="text" class="validate" formControlName="id_u" required>
             <label for="icon_prefix">documento</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix">account_circle</i>
-            <input type="text" class="validate" formControlName="name_p" required>
+            <input type="text" class="validate" formControlName="name" required>
             <label for="icon_prefix">Nombre</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" class="validate" formControlName="last" required>
+            <label for="icon_prefix">Apellidos</label>
         </div>
     </div>
     <div class="row">
@@ -38,10 +45,10 @@
     <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix">email</i>
-            <input type="email" class="validate" formControlName="email_p" required>
-            <label for="email">Email</label>
+            <input type="email" class="validate" formControlName="mail" required>
+            <label for="mail">Email</label>
             <span class="helper-text" data-error="wrong" data-success="right">Ingrese su email</span>
         </div>
     </div>
-    <button class="btn waves-effect teal lighten-2" type="submit" name="action" [disabled]="form.invalid" (click)="register()">Registrar<i class="material-icons right">send</i></button>
+    <button class="btn waves-effect teal lighten-2" type="submit" name="action" [disabled]="form.invalid">Registrar<i class="material-icons right">send</i></button>
 </form>

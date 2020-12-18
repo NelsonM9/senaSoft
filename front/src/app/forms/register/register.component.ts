@@ -20,13 +20,16 @@ export class RegisterComponent implements OnInit {
       this.route.navigate['/'];
     }
     this.form = this.fb.group({
-      id_p: ['', Validators.required],
-      name_p: ['', Validators.required],
-      email_p: ['', [Validators.email, Validators.required]],
+      id_u: ['', Validators.required],
+      name: ['', Validators.required],
+      last: ['', Validators.required],
+      mail: ['', [Validators.email, Validators.required]],
       phone: ['', Validators.required],
       password: ['', Validators.required],
       age: ['', Validators.required],
-      role_p:['',Validators.required]
+      role:[''],
+      id_m:[''],
+      id_family:['']
 
     })
   }
@@ -40,13 +43,16 @@ register(){
       this.client.postRequest(
         'http://127.0.0.1:5000/signin',
         {
-          id_p: this.form.value.id_p,
-          name_p: this.form.value.name_p,
-          mail_p: this.form.value.mail_p,
+          id_u: this.form.value.id_u,
+          name: this.form.value.name,
+          last: this.form.value.last,
+          mail: this.form.value.mail,
           phone: this.form.value.phone,
           password: this.form.value.password,
           age: this.form.value.age,
-          role_p: '1',
+          role: '2',
+          id_m: '1234567891',
+          id_family:'3'
         },
         // Se envia el token
       ).subscribe(

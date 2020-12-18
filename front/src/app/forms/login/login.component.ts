@@ -20,7 +20,7 @@ form: FormGroup;
   // tslint:disable-next-line: typedef
   ngOnInit(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
+      mail: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required]
     });
   }
@@ -42,7 +42,7 @@ form: FormGroup;
     if (this.form.valid) {
 
       this.client.postRequest('http://127.0.0.1:5000/login', {
-        mail: this.form.value.email,
+        mail: this.form.value.mail,
         password: this.form.value.password
       }).subscribe(
 
