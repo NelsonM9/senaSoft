@@ -31,14 +31,13 @@ class Signin(MethodView):
                     errors = doctor_schema.validate(user_signin)
                     if errors:
                         return jsonify({'st': errors}), 403
-                    #docs = cm.get_query_by(
-                        #my_db, user_signin['mail'], 'mail')
+                    docs = cm.get_query_by(my_db, user_signin['mail'], 'mail')
                     if docs == []:
                         user_signin['password'] = crypt.hash_string(
                             user_signin['password'])
                         doc_msg = cm.add_doc(my_db, user_signin)
                         if doc_msg == "ok":
-                            status = mail_tool.send_msg(user_signin['mail'])
+                            #status = mail_tool.send_msg(user_signin['mail'])
                             return jsonify({'st': 'ok'}), 200
                         elif doc_msg == "error":
                             return jsonify({'st': 'add error'}), 403
@@ -52,14 +51,13 @@ class Signin(MethodView):
                         errors = patient_schema.validate(user_signin)
                         if errors:
                             return jsonify({'st': errors}), 403
-                        #docs = cm.get_query_by(
-                            #my_db, user_signin['mail'], 'mail')
+                        docs = cm.get_query_by(my_db, user_signin['mail'], 'mail')
                         if docs == []:
                             user_signin['password'] = crypt.hash_string(
                                 user_signin['password'])
                             doc_msg = cm.add_doc(my_db, user_signin)
                             if doc_msg == "ok":
-                                status = mail_tool.send_msg(user_signin['mail'])
+                                #status = mail_tool.send_msg(user_signin['mail'])
                                 return jsonify({'st': 'ok'}), 200
                             elif doc_msg == "error":
                                 return jsonify({'st': 'add error'}), 403
