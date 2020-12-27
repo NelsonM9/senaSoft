@@ -53,13 +53,13 @@ export class RegisterDocComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.form.reset();
-
+          this.route.navigate(['/patient'])
         }
       ),
       // tslint:disable-next-line: no-unused-expression
       (error) => {
         console.log(error.status);
-
+        this.route.navigate(['/signin'])
       };
     }else{
       console.log('Error en la entrada de datos del formulario del cliente');
