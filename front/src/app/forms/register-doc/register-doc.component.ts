@@ -53,7 +53,7 @@ export class RegisterDocComponent implements OnInit {
         (response: any) => {
           console.log(response);
           this.form.reset();
-          this.route.navigate(['/patient'])
+          this.route.navigate(['/login'])
         }
       ),
       // tslint:disable-next-line: no-unused-expression
