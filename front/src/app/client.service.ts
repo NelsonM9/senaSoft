@@ -7,14 +7,23 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
   // tslint:disable-next-line: typedef
-  getRequest(route: string, token?: string) {
+  getRequest(route: string, idu?: string, token?: string ) {
+    console.log(idu)
     const config: any = {
-      responseType: 'json'
+      responseType: 'json',
     };
+
+    if (idu){
+      const params1 = new HttpParams().set('idu', idu);
+      console.log(params1)
+      config.params = params1
+    }
+
     if (token) {
       const header = new HttpHeaders().set('Authorizaton', `Bearer${token}`);
       config.headers = header;
     }
+
     console.log(config);
     return this.http.get(route, config);
   }

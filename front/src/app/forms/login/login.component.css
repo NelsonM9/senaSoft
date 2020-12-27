@@ -15,18 +15,16 @@
     background-size: cover;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background: linear-gradient(to top, #006D77, #83C5BE);
+    background: #f8f9fa!important;
 }
 
 h1 {
     color: #060c21;
+    text-align: center;
 }
 
-.form-style {
-    margin-top: 70%;
-    padding: 25px;
-    padding-left: 50%;
-    padding-right: 50%;
+label {
+    color: black
 }
 
 .mat-flat-button.mat-primary,
@@ -35,13 +33,6 @@ h1 {
 .mat-mini-fab.mat-primary {
     background-color: #ac4848;
     color: 060c21;
-}
-
-input:-internal-autofill-selected {
-    appearance: menulist-button;
-    background-color: #ac4848!important;
-    background-image: none !important;
-    color: -internal-light-dark(black, white) !important;
 }
 
 .mat-input-element {

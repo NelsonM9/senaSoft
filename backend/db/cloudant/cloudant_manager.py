@@ -97,6 +97,7 @@ class CloudantManager():
             docs = CloudantManager.get_all_docs(db)
             for doc in docs:
                 if doc["doc"].get(key_i) == value_i:
+                    print(doc["doc"].get(key_i) == value_i, value_i, key_i, sep='-')
                     list_docs.append(doc)
             return list_docs
         except:

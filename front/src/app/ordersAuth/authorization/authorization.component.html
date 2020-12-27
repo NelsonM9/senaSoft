@@ -1,40 +1,46 @@
-<div class="container ">
-    <form class="form-inline" method="POST">
-        <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="1094970803" formControlName="email">
-        </mat-form-field>
-        <button mat-button color="primary">Buscar</button>
-
-    </form>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+<div class=contenedor1>
+    <h2>Autorizaciones</h2>
+    <div class="contenedor11">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col s8">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="id_p" type="text" class="validate" formControlName="id_p" required>
+                    <label for="id_p">Documento Del Paciente</label>
+                </div>
+            </div>
+            <div class=" row contenedor11">
+                <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="form.invalid">Generar orden
+          <i class="material-icons right">send</i>
+        </button>
+            </div>
+        </form>
+        <div class="contenedor2">
+            <form [formGroup]="form1">
+                <div class="file-field input-field col s12" *ngIf="estado">
+                    <div class="btn">
+                        <span>File</span>
+                        <input type="file" formControlName="file_a">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" formControlName="file_a" required>
+                    </div>
+                </div>
+                <table class="text-center" *ngIf="estado">
+                    <tr>
+                        <th *ngFor="let column of headers">
+                            {{column}}
+                        </th>
+                    </tr>
+                    <tr *ngFor="let row of rows; index as i">
+                        <td>{{row["id_o"]}}</td>
+                        <td>{{row["id_a"]}}</td>
+                        <td>{{row["diagnosis"]}}</td>
+                        <td>
+                            <button class="btn text-white bg-warning" type="submit" name="action" [disabled]="form1.invalid" (click)="addAuthorization(row, i) ">Generar Orden</button>
+                            <td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
 </div>

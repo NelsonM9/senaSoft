@@ -26,7 +26,7 @@
                 <a class="nav-link" mat-button [matMenuTriggerFor]="menu">Menu</a>
                 <mat-menu #menu="matMenu">
                     <a class="nav-link" mat-menu-item [routerLink]="['/login']">Iniciar sesion</a>
-                    <a class="nav-link" mat-menu-item [routerLink]="['/register']"> Registrarse</a>
+                    <a class="nav-link" mat-menu-item [routerLink]="['/register']"> Registro Doctor</a>
                 </mat-menu>
             </li>
             <li class="nav-item" *ngIf="auth.isLogedIn() | async">

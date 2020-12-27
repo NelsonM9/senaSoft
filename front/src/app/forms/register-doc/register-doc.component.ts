@@ -21,14 +21,14 @@ export class RegisterDocComponent implements OnInit {
       this.route.navigate['/'];
     }
     this.form = this.fb.group({
-      id_d: ['', Validators.required],
-      name_d: ['',  Validators.required],
-      mail_d: ['', Validators.required],
+      id_u: ['', Validators.required],
+      name: ['',  Validators.required],
+      last: ['', Validators.required],
+      mail: ['', Validators.required],
       specialty: ['', Validators.required],
       phone: ['', Validators.required],
-      password_d:['',Validators.required],
-
-
+      password:['',Validators.required],
+      role: ['']
     })
   }
 
@@ -37,16 +37,17 @@ export class RegisterDocComponent implements OnInit {
     if (this.form.valid){
       console.log(this.form);
       this.client.postRequest(
-        'http://127.0.0.1:5000/api/register',
+        'http://127.0.0.1:5000/signin',
         {
-          id_d: this.form.value.id_d,
-          name_d: this.form.value.name_d,
-          mail_d: this.form.value.mail_d,
+          id_u: this.form.value.id_u,
+          name: this.form.value.name,
+          last: this.form.value.last,
+          mail: this.form.value.mail,
           specialty: this.form.value.specialty,
           phone: this.form.value.phone,
-          password_d: this.form.value.Password_d,
-          role_d: "2"
-        },
+          password: this.form.value.password,
+          role: '1'
+        }
         // Se envia el token
       ).subscribe(
         (response: any) => {

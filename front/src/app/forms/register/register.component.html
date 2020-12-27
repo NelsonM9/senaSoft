@@ -1,12 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col s12">
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
             <i class="material-icons prefix blue-sac">assignment</i>
             <input type="text" class="validate" formControlName="id_u" required>
             <label for="icon_prefix">documento</label>
         </div>
-    </div>
-    <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix">account_circle</i>
             <input type="text" class="validate" formControlName="name" required>
@@ -19,8 +17,6 @@
             <input type="text" class="validate" formControlName="last" required>
             <label for="icon_prefix">Apellidos</label>
         </div>
-    </div>
-    <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix">phone</i>
             <input type="text" class="validate" formControlName="phone" required>
@@ -30,12 +26,12 @@
     <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix">vpn_key</i>
-            <input matInput [type]="hide ? 'password' : 'text'" class="validate" formControlName="password" required>
-            <label>Password</label>
-            <button btn waves-effect (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"><mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" class="validate" required>
+            <label for="password">Password</label>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
         </div>
-    </div>
-    <div class="row">
         <div class="input-field col s6">
             <i class="material-icons prefix"></i>
             <input type="text" class="validate" formControlName="age" required>
@@ -47,8 +43,13 @@
             <i class="material-icons prefix">email</i>
             <input type="email" class="validate" formControlName="mail" required>
             <label for="mail">Email</label>
-            <span class="helper-text" data-error="wrong" data-success="right">Ingrese su email</span>
+            <span class="helper-text" data-error="No es tipo email" data-success="right">Ingrese su email</span>
         </div>
     </div>
-    <button class="btn waves-effect teal lighten-2" type="submit" name="action" [disabled]="form.invalid">Registrar<i class="material-icons right">send</i></button>
+    <div class=" row contenedor11">
+        <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="form.invalid">Registrarse
+            <i class="material-icons right">send</i>
+          </button>
+    </div>
+
 </form>

@@ -11,29 +11,28 @@ class Appointment(MethodView):
     def get(self):
         try:
             id_u = request.args.get('idu')
+            print(id_u)
             cm.connect_service()
             my_db = cm.connect_db('health-db')
             if my_db == 'error':
                 raise Exception
             user_docs = cm.get_query_by(my_db, id_u, 'id_p')
+            print(user_docs)
             list_appointments = []
             for result in user_docs:
                 try:
                     appointment_id = result['doc']['id_a']
-                    appointments = cm.get_query_by(
-                        my_db, appointment_id, 'id_a')
-                    for result_app in appointments:
-                        try:
-                            new_appointment = {
-                                'id_a': appointment_id,
-                                'id_d': result_app['doc']['id_d'],
-                                'id_p': result_app['doc']['id_p'],
-                                'date_a': result_app['doc']['date_a'],
-                                'reason': result_app['doc']['reason']
-                            }
-                            list_appointments.append(new_appointment)
-                        except:
-                            pass
+                    id_u = result['doc']['id_p']
+                    new_appointment = {
+                        'id_a': appointment_id,
+                        'id_d': result['doc']['id_d'],
+                        'id_p': id_u,
+                        'date_a': result['doc']['date_a'],
+                        'reason': result['doc']['reason']
+                    }
+                    print("agendo")
+                    print(new_appointment)
+                    list_appointments.append(new_appointment)
                 except:
                     pass
             return jsonify({'appointments': list_appointments}), 200
@@ -56,6 +55,6 @@ class Appointment(MethodView):
             elif doc_msg == "error":
                 return jsonify({'st': 'error'}), 403
             else:
-                return jsonify({'st': 'nothing'}), 403 
+                return jsonify({'st': 'nothing'}), 403
         except:
             return jsonify({'st': "bad"}), 403

@@ -11,7 +11,12 @@ import { AuthService } from '../../auth.service';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
-  constructor(private fb: FormBuilder, private client: ClientService, private route: Router, public atuh: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private client: ClientService,
+    private route: Router,
+    public atuh: AuthService
+    ) { }
   hide = true;
   notification: boolean;
   ngOnInit(): void {

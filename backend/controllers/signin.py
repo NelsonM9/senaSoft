@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask import request, jsonify
 from helpers.crypt import Crypt
-from helpers.email_confirmation import EmailConfirmation
+#from helpers.email_confirmation import EmailConfirmation
 from validators.patient_val import PatientSignin
 from validators.doctor_val import DoctorSignin
 from db.helpers.db_parser import DBP
@@ -15,7 +15,7 @@ cm = CloudantManager()
 pm = PostgresqlManager()
 dbp = DBP()
 crypt = Crypt()
-mail_tool = EmailConfirmation()
+#mail_tool = EmailConfirmation()
 
 class Signin(MethodView):
     def post(self):
@@ -31,8 +31,8 @@ class Signin(MethodView):
                     errors = doctor_schema.validate(user_signin)
                     if errors:
                         return jsonify({'st': errors}), 403
-                    docs = cm.get_query_by(
-                        my_db, user_signin['mail'], 'mail')
+                    #docs = cm.get_query_by(
+                        #my_db, user_signin['mail'], 'mail')
                     if docs == []:
                         user_signin['password'] = crypt.hash_string(
                             user_signin['password'])
@@ -52,8 +52,8 @@ class Signin(MethodView):
                         errors = patient_schema.validate(user_signin)
                         if errors:
                             return jsonify({'st': errors}), 403
-                        docs = cm.get_query_by(
-                            my_db, user_signin['mail'], 'mail')
+                        #docs = cm.get_query_by(
+                            #my_db, user_signin['mail'], 'mail')
                         if docs == []:
                             user_signin['password'] = crypt.hash_string(
                                 user_signin['password'])

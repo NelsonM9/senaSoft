@@ -14,7 +14,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 form: FormGroup;
   // tslint:disable-next-line: max-line-length
-  constructor(private fb: FormBuilder, private client: ClientService, public auth: AuthService, private route: Router, ) { }
+  constructor(
+    private fb: FormBuilder,
+    private client: ClientService,
+    public auth: AuthService,
+    private route: Router
+    ) { }
 
   hide = true;
   // tslint:disable-next-line: typedef
@@ -55,7 +60,7 @@ form: FormGroup;
           this.auth.setCourrentUser(response.name);
           // navegamos de nuevo al home, esta vez como usuario
           // logueado
-          this.route.navigate( ['/']);
+          this.route.navigate( ['/patient']);
       }),
 
       // tslint:disable-next-line: no-unused-expression

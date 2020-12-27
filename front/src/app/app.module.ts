@@ -30,6 +30,8 @@ import { MedicalRComponent } from './components/medical-r/medical-r.component';
 import { DoctorsComponent } from './components/doctors/doctors.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { PatientsComponent } from './pages/doctor/patients/patients.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { ToastrModule } from 'ngx-toastr'
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +65,8 @@ import { PatientsComponent } from './pages/doctor/patients/patients.component';
     MaterialComponent,
     CdkTableModule,
     NgbModule,
-    
-
+    NgxFileDropModule,
+    ToastrModule
   ],
   providers: [],
   bootstrap: [AppComponent]

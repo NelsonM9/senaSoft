@@ -1,33 +1,41 @@
-<div class="container-fluid">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
+<h2>Ordenes</h2>
+<div class="contenedor1">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col s8">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="id_p" type="text" class="validate" formControlName="id_p" required>
+                <label for="id_p">Documento Del Paciente</label>
+            </div>
+        </div>
+        <div class=" row contenedor11">
+            <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="form.invalid">Generar orden
+              <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+    <div class="contenedor2">
+        <form [formGroup]="form1">
+            <div class="input-field col s8" *ngIf="estado">
+                <textarea class="materialize-textarea" formControlName="diagnosis" required></textarea>
+                <label for="textarea1">Diagnostico</label>
+            </div>
+            <table class="text-center" *ngIf="estado">
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr *ngFor="let row of rows; index as i">
+                    <td>{{row["date_a"]}}</td>
+                    <td>{{row["id_a"]}}</td>
+                    <td>{{row["id_d"]}}</td>
+                    <td>{{row["id_p"]}}</td>
+                    <td>{{row["reason"]}}</td>
+                    <td>
+                        <button class="btn text-white bg-warning" type="submit" name="action" [disabled]="form1.invalid" (click)="addOrden(row, i) ">Generar Autorizacion</button>
+                        <td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
-<hr>
