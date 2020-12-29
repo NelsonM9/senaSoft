@@ -64,13 +64,13 @@ register(){
         (response: any) => {
           console.log(response);
           this.form.reset();
-          this.route.navigate(['/patient'])
+          this.route.navigate(['/login'])
         }
       ),
       // tslint:disable-next-line: no-unused-expression
       (error) => {
         console.log(error.status);
-        this.route.navigate(['/patient'])
+        this.route.navigate(['/'])
 
       };
     }else{
