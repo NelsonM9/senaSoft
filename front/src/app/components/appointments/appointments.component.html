@@ -20,21 +20,23 @@
         </div>
     </form>
     <div class="contenedor2">
-        <table class="text-center" *ngIf="estado">
-            <tr>
-                <th *ngFor="let column of headers">
-                    {{column}}
-                </th>
-            </tr>
-            <tr *ngFor="let row of rows; index as i">
-                <td>{{row["date_a"]}}</td>
-                <td>{{row["id_a"]}}</td>
-                <td>{{row["id_d"]}}</td>
-                <td>{{row["id_p"]}}</td>
-                <td>{{row["reason"]}}</td>
-                <td><button class="btn text-white bg-warning" (click)="delete(row, i)">Generar Cita</button>
-                    <td>
-            </tr>
-        </table>
+        <form [formGroup]="form1">
+            <table class="text-center" *ngIf="estado">
+                <tr>
+                    <th *ngFor="let column of headers">
+                        {{column}}
+                    </th>
+                </tr>
+                <tr *ngFor="let row of rows; index as i">
+                    <td>{{row["date_a"]}}</td>
+                    <td>{{row["id_a"]}}</td>
+                    <td>{{row["id_d"]}}</td>
+                    <td>{{row["id_p"]}}</td>
+                    <td>{{row["reason"]}}</td>
+                    <td><button class="btn text-white bg-warning" (click)="delete(row, i)">Generar Cita</button>
+                        <td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>

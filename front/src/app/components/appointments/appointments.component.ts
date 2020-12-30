@@ -11,6 +11,7 @@ import { ClientService } from '../../client.service';
 export class AppointmentsComponent implements OnInit {
 
   form: FormGroup;
+  form1: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,7 @@ export class AppointmentsComponent implements OnInit {
           reason: this.form.value.reason,
           id_p: this.form.value.id_p,
           date_a: this.form.value.date_a,
-          id_a: '13',
+          id_a: '14',
           id_d: '1096145365'
         }).subscribe((response: any) => {
           this.dataEx = response;
@@ -80,19 +81,25 @@ export class AppointmentsComponent implements OnInit {
     }
   }
 
-  delete(appointment: any, id_row: number) {
-    this.client.deleteRequest('http//127.0.0.1:5000/appointment', appointment['Id']).subscribe((data: any) => {
-      this.dataEx = data;
-      this.state = this.dataEx['state'];
+  async addCita(appointment: any, id_row: number) {
+    console.log('hola')
+    this.client.postRequest('http://127.0.0.1:5000/order', {
+      diagnosis: this.form1.value.diagnosis,
+      id_o: '1',
+      id_a: this.rows[id_row]['id_a']
+    }).subscribe((response: any) => {
+      this.dataEx = response;
+      this.state = this.dataEx['st'];
       switch (this.state) {
         case 'ok':
-          if (appointment['Id'] == this.rows[id_row]['Id']) {
+          if (appointment['id_a'] == this.rows[id_row]['id_a']) {
             this.rows.splice(id_row, 1);
             this.tabla()
+            this.form1.reset();
           }
-          console.log('delete')
+          console.log('agregado')
           break;
-        case 'document': {
+        case 'nothing': {
           console.log('Unregistred user')
           break;
         }

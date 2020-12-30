@@ -30,7 +30,6 @@ class Appointment(MethodView):
                         'date_a': result['doc']['date_a'],
                         'reason': result['doc']['reason']
                     }
-                    print("agendo")
                     print(new_appointment)
                     list_appointments.append(new_appointment)
                 except:

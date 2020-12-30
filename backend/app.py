@@ -4,9 +4,9 @@ from routes import users, appointment, document, token
 from db.postgresql.model import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:pass123@localhost:5432/dr-health'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:pass123@localhost:5432/dr-health'
 CORS(app, support_credentials=True)
-db.init_app(app)
+#db.init_app(app)
 
 # User routes
 app.add_url_rule(users['signin'], view_func=users['view_func_signin'])

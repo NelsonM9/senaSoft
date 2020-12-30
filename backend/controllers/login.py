@@ -40,8 +40,8 @@ class Login(MethodView):
                     # Construccion y envio del token
                     exp = datetime.datetime.utcnow() + datetime.timedelta(seconds=600)
                     name = user['doc']['name']
-                    encoded_token = jwt.encode({'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256')
-                    return jsonify({'st': 'ok', 'token': encoded_token}), 200
+                    #encoded_token = jwt.encode({'exp': exp, 'name': name}, KEY_TOKEN_AUTH, algorithm='HS256')
+                    return jsonify({'st': 'ok'}), 200
                 else:
                     return jsonify({'st': 'pass'}), 403
             return jsonify({'st': 'email'}), 403
